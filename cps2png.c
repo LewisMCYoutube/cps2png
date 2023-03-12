@@ -343,6 +343,8 @@ int main(int argc, char *argv[]) {
 	}
 }
 
+// Copyright (c) 2023 project PHYCHO
+// 
 // Permission to use, copy, modify, and/or distribute this software
 // for any purpose with or without fee is hereby granted.
 // 
@@ -353,7 +355,7 @@ int main(int argc, char *argv[]) {
 // LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
 // OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 // OR PERFORMANCE OF THIS SOFTWARE.
-//
+// 
 // Based significantly on code from <https://github.com/malucard/eternal-legacy>,
 // which was written by malucart and is available under the zlib license.
 // See <https://github.com/LewisMCYoutube/cps2png> for full documentation.
