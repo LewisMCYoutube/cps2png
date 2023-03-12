@@ -264,7 +264,7 @@ static uint8_t* prepare_cps(uint8_t *buf, uint32_t size, uint32_t *unpacked_size
 			for (uint32_t i = 0; j < size - 4; j = j + 4, i++) {
 				*((uint32_t *)(buf + j)) -= key + keys[i % 8] + size;
 				key *= 0x41C64E6D;
-    			key += 0x9B06;
+				key += 0x9B06;
 			}
 		} else {
 			fprintf(stderr, "CPS version unknown\n");
@@ -343,8 +343,6 @@ int main(int argc, char *argv[]) {
 	}
 }
 
-// Copyright (c) 2023 project PHYCHO
-//
 // Permission to use, copy, modify, and/or distribute this software
 // for any purpose with or without fee is hereby granted.
 // 
