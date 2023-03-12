@@ -175,7 +175,6 @@ void unpack_lnd(uint8_t *buf, uint8_t *out, uint32_t size, uint32_t unpacked_siz
 							memcpy(out + dst + i, out + dst - offset + i, 1);
 						}
 					}
-					dst += count;
 					break;
 				} else {
 					memcpy(out + dst, out + dst - offset, count);
