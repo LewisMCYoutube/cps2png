@@ -25,6 +25,9 @@ int prt_to_png(uint8_t *data, char *out_filename) {
 	uint16_t img_w = *((uint16_t *)(data + 12));
 	uint16_t img_h = *((uint16_t *)(data + 14));
 	int has_alpha = *((uint16_t *)(data + 16)) != 0;
+	#ifdef NO_ALPHA
+	has_alpha = 0;
+	#endif
 	uint32_t offx, offy;
 	if (version == 102) {
 		offx = *((uint32_t *)(data + 20));
