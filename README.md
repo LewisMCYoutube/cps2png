@@ -8,7 +8,7 @@ This is a tool to convert CPS files found in games published by KID and 5pb. (no
 | ---------------------------------------- | ----------- |
 | Memories Off (2000, KID)                 | Windows     |
 
-This version of the format has a 12-byte header, while later versions have a 16-byte header. cps2png works with all CPS files found in *Memories Off for Windows*.
+This version of the format has a 12-byte header, while later versions have a 16-byte header. cps2png works with the CPS files found in *Memories Off for Windows*.
 ### 102 (`66 00`)
 | Game                                     | Platform    |
 | ---------------------------------------- | ----------- |
