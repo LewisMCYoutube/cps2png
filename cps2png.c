@@ -167,6 +167,7 @@ void unpack_lnd(uint8_t *buf, uint8_t *out, uint32_t size, uint32_t unpacked_siz
 				src++;
 				if (unpacked_size - dst < count) count = unpacked_size - dst;
 				if (src + count > size) {
+					fprintf(stderr, "Compressed data implies an out-of-bounds read - output may be incorrect\n");
 					for (unsigned int i = 0; count > i; i++) {
 						if (src + i > size) {
 							dst += i;
