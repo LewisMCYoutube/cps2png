@@ -16,7 +16,7 @@ This version of the format has a 12-byte header, while later versions have a 16-
 | Tentama 1st Sunny Side (2002, KID)       | Windows     |
 | Ever17 -the out of infinity- (2003, KID) | Windows     |
 
-cps2png works with all CPS files found in these releases.
+cps2png works with all CPS files found in these releases, and the uncompressed files produced by arysm's [Ever17 CPS Converter](https://github.com/arsym-dev/Ever17-CPS-Converter).
 ### 104 (`68 00`)
 | Game                                     | Platform    |
 | ---------------------------------------- | ----------- |
