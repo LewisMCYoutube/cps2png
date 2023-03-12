@@ -166,6 +166,7 @@ void unpack_lnd(uint8_t *buf, uint8_t *out, uint32_t size, uint32_t unpacked_siz
 				int offset = ((ctl & 3) << 8) + *((uint8_t *)(buf + src)) + 1;
 				src++;
 				if (unpacked_size - dst < count) count = unpacked_size - dst;
+				if (src + count > size) count = size - src;
 				memcpy(out + dst, out + dst - offset, count);
 				dst += count;
 			}
@@ -191,6 +192,7 @@ void unpack_lnd(uint8_t *buf, uint8_t *out, uint32_t size, uint32_t unpacked_siz
 				src++;
 			}
 			if(unpacked_size - dst < count) count = unpacked_size - dst;
+			if (src + count > size) count = size - src;
 			memcpy(out + dst, buf + src, count);
 			src += count;
 			dst += count;
