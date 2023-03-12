@@ -319,7 +319,6 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "Usage: ./cps2png <file.cps> <file.png>\n");
 		exit(EXIT_FAILURE);
 	}
-	printf("cps name: %s\n", argv[2]);
 	FILE *cps_file;
 	cps_file = fopen(argv[1], "rb");
 	if (cps_file == NULL) {
