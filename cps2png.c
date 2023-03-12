@@ -166,9 +166,21 @@ void unpack_lnd(uint8_t *buf, uint8_t *out, uint32_t size, uint32_t unpacked_siz
 				int offset = ((ctl & 3) << 8) + *((uint8_t *)(buf + src)) + 1;
 				src++;
 				if (unpacked_size - dst < count) count = unpacked_size - dst;
-				if (src + count > size) count = size - src;
-				memcpy(out + dst, out + dst - offset, count);
-				dst += count;
+				if (src + count > size) {
+					for (unsigned int i = 0; count > i; i++) {
+						if (src + i > size) {
+							dst += i;
+							break;
+						} else {
+							memcpy(out + dst + i, out + dst - offset + i, 1);
+						}
+					}
+					dst += count;
+					break;
+				} else {
+					memcpy(out + dst, out + dst - offset, count);
+					dst += count;
+				}
 			}
 		} else if (ctl & 0x40) {
 			int length = (ctl & 0x3F) + 2 < unpacked_size - dst? (ctl & 0x3F) + 2: unpacked_size - dst;
@@ -192,11 +204,13 @@ void unpack_lnd(uint8_t *buf, uint8_t *out, uint32_t size, uint32_t unpacked_siz
 				src++;
 			}
 			if(unpacked_size - dst < count) count = unpacked_size - dst;
-			if (src + count > size) count = size - src;
 			memcpy(out + dst, buf + src, count);
 			src += count;
 			dst += count;
 		}
+	}
+	if (unpacked_size > dst) {
+		memset(out + dst, *((uint8_t *)(out + dst - 1)), unpacked_size - dst);
 	}
 }
 
@@ -298,7 +312,6 @@ static uint8_t* prepare_cps(uint8_t *buf, uint32_t size, uint32_t *unpacked_size
 		fprintf(stderr, "Unknown type of compression\n");
 		return 0;
 	}
-	free(buf);
 	return out;
 }
 int main(int argc, char *argv[]) {
@@ -306,6 +319,7 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "Usage: ./cps2png <file.cps> <file.png>\n");
 		exit(EXIT_FAILURE);
 	}
+	printf("cps name: %s\n", argv[2]);
 	FILE *cps_file;
 	cps_file = fopen(argv[1], "rb");
 	if (cps_file == NULL) {
@@ -357,7 +371,7 @@ int main(int argc, char *argv[]) {
 // LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
 // OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
 // OR PERFORMANCE OF THIS SOFTWARE.
-// 
+//
 // Based significantly on code from <https://github.com/malucard/eternal-legacy>,
 // which was written by malucart and is available under the zlib license.
 // See <https://github.com/LewisMCYoutube/cps2png> for full documentation.
