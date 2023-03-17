@@ -169,12 +169,8 @@ void unpack_lnd(uint8_t *buf, uint8_t *out, uint32_t size, uint32_t unpacked_siz
 				int offset = ((ctl & 3) << 8) + *((uint8_t *)(buf + src)) + 1;
 				src++;
 				if (unpacked_size - dst < count) count = unpacked_size - dst;
-				if (src + count > size) {
-					break;
-				} else {
-					memcpy(out + dst, out + dst - offset, count);
-					dst += count;
-				}
+				memcpy(out + dst, out + dst - offset, count);
+				dst += count;
 			}
 		} else if (ctl & 0x40) {
 			int length = (ctl & 0x3F) + 2 < unpacked_size - dst? (ctl & 0x3F) + 2: unpacked_size - dst;
@@ -310,6 +306,7 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "Usage: ./cps2png <file.cps> <file.png>\n");
 		exit(EXIT_FAILURE);
 	}
+	printf("cps name: %s\n", argv[2]);
 	FILE *cps_file;
 	cps_file = fopen(argv[1], "rb");
 	if (cps_file == NULL) {
@@ -323,7 +320,7 @@ int main(int argc, char *argv[]) {
 	rewind(cps_file);
 
 	uint8_t *data;
-	data = malloc(size);
+	data = malloc(size + 100);
 	fread(data, 1, size, cps_file);
 	fclose(cps_file);
 
