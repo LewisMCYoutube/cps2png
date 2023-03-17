@@ -8,12 +8,13 @@ This is a tool to convert CPS files found in games published by KID and 5pb. (no
 | ---------------------------------------- | ----------- |
 | Memories Off (2000, KID)                 | Windows     |
 
-This version of the format has a 12-byte header, while later versions have a 16-byte header. cps2png works with the CPS files found in *Memories Off for Windows*.
+This version of the format has a 12-byte header, while later versions have a 16-byte header. cps2png works with the CPS files found in *Memories Off for Windows*. There may be trailing transparency or black pixels at the end of some images (this won't occur for images with no transparency, or if you use the "no-alpha" builds), or odd colours in areas of images that don't appear in-game.
 ### 102 (`66 00`)
 | Game                                     | Platform    |
 | ---------------------------------------- | ----------- |
 | Never7 -the end of infinity- (2001, KID) | Windows     |
 | Tentama 1st Sunny Side (2002, KID)       | Windows     |
+| Memories Off 2nd (2001/2002, KID)        | Windows     |
 | Ever17 -the out of infinity- (2003, KID) | Windows     |
 
 cps2png works with all CPS files found in these releases, and the uncompressed files produced by arysm's [Ever17 CPS Converter](https://github.com/arsym-dev/Ever17-CPS-Converter).
